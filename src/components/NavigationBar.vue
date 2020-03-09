@@ -1,0 +1,117 @@
+<template>
+  <el-header height="80px">
+    <div>
+      <div class="nav-left">
+        <img src="../assets/logo_adds.jpg" height="79" alt="LOGO" @click="goToMainPage">
+      </div>
+      <div class="nav-center">
+        <ul>
+          <li v-for="(list, index) in headerList" :key="list.id">
+            <router-link :to="{path: list.path}" onmouseover="this.style.color = '#409EFF'" onmouseout="this.style.color = 'rgb(140, 197, 255)'">
+              {{list.title}}
+            </router-link>
+          </li>
+        </ul>
+      </div>
+      <div class="nav-right">
+        <span>{{'Hi, ' + this.$store.state.user.username}}</span>&nbsp;|&nbsp;<el-button type="text" @click="logOut">Log Out</el-button>
+      </div>
+    </div>
+  </el-header>
+</template>
+
+<script>
+    export default {
+        name: "NavigationBar",
+        data() {
+            return {
+                headerList: [
+                    {id: '1', path: '/deepLearning', title: 'Deep Learning'},
+                    {id: '2', path: '/knowledgeGraph', title: 'Knowledge Graph'},
+                    {id: '3', path: '/QA', title: 'Q&A'},
+                    {id: '4', path: '/my', title: 'My'}
+                ],
+                isShow: false
+            };
+        },
+        methods: {
+            goToMainPage() {
+                this.$router.push('/deepLearning');
+            },
+            logOut() {
+                this.$confirm('Log Out? ', 'Warning', {
+                    confirmButtonText: 'Confirm',
+                    cancelButtonText: 'Cancel',
+                    type: 'warning'
+                }).then(() => {
+                    this.$store.commit('clearUserInfo');
+                    this.$router.push('/');
+                    this.$message({
+                        type: 'success',
+                        message: 'Log out successfully! '
+                    });
+                }).catch(() => {
+                });
+            }
+        }
+    }
+</script>
+
+<style scoped>
+  .el-header {
+    position: fixed;
+    top: 0;
+    left: 30px;
+    right: 30px;
+    border-bottom: 1px solid #dcdfe6;
+    padding-left: 30px;
+    /*color: #333;*/
+    /*text-align: center;*/
+    font-size: 16px;
+    background-color: white;
+    z-index: 999;
+  }
+
+  ul {
+    line-height: 76px;
+    margin: 0;
+    padding-left: 0;
+    /*padding-left: 20px;*/
+  }
+
+  li {
+    list-style: none;
+    float: left;
+    margin-left: 40px;
+    /*height: 80px;*/
+  }
+
+  a {
+    text-decoration: none;
+    display: block;
+    padding: 0 10px;
+    color: rgb(140, 197, 255);
+    /*font-weight: bolder;*/
+  }
+
+  .nav-left {
+    height: 80px;
+    float: left;
+    cursor: pointer;
+  }
+
+  .nav-center {
+    float: left;
+    /*margin-left: 50px;*/
+  }
+
+  .nav-center ul li a.is-active {
+    color: #409EFF;
+    border-bottom: 4px solid rgb(140, 197, 255);
+  }
+
+  .nav-right {
+    float: right;
+    line-height: 80px;
+  }
+</style>
