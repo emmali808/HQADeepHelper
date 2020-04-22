@@ -1,4 +1,4 @@
-###Introduction for our HQADeepHelper code.
+### Introduction for our HQADeepHelper code.
 
 “adds” is the system rear end，“adds-frontend” is the system front end，“QA-deep-model” is the deep learning library for the system.
 
@@ -8,7 +8,7 @@ To use our system, you should first configure the deep learning libaray, for thi
 Then configure the system rear end and front end as follows:
 The system rear end was a springboot project, just open and add related dependencies in IDEA, then you need to configure the following in the application.properties file:
 
-####Database related configuration
+####    Database related configuration
 This project uses mysql database.
 
 Modify the following configuration to your database information:
@@ -17,7 +17,7 @@ Modify the following configuration to your database information:
 *   spring.datasource.username；
 *   spring.datasource.password
 
-####Neo4j related configuration
+####    Neo4j related configuration
 
 This project uses Neo4j to store our knowledge graph.
 
@@ -27,7 +27,7 @@ Modify the following configuration to your Neo4j account information:
 * spring.data.neo4j.username; 
 * spring.data.neo4j.password
 
-####Other path configuration
+####    Other path configuration
 *   file.path.deep-model-project
     >this is a foler path saved for QA-deep-model，change it to the folder and ends with '/'，such as：/home/QA-deep-model/ ;
 *   file.path.conda-path
