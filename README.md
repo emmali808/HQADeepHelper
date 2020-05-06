@@ -1,47 +1,43 @@
-To use the deep models, you should first install those deep learning module requirements and then prepare the files. To reproduce our demo, you could download hqa_sample.zip from http://47.94.174.82:8080/HQADeepHelper/Instruction/system_require/ and place all the files in hqa_sample to our folder HAR-master/data/pinfo/hqa_sample/.
+### Introduction for our HQADeepHelper code.
 
-##  the deep learning module requirements
+“adds” is the system rear end，“adds-frontend” is the system front end，“QA-deep-model” is the deep learning library for the system.
 
-####    Our Environment: 
-first you should using anaconda tool to create the enviroment named pytorch and install these modules in the env pytorch
-
-*   tensorflow  1.14.0
-*   keras   2.2.4
-*   torch   1.3.0
-*   tqdm    4.37.0
-*   transformers    2.5.1
-*   tagme   0.1.3
-*   spacy   2.2.2
-*   scispacy    0.2.4
-*   tensorboardX    1.9
-*   scispacy    1.3.2
-*   requests    2.22.0
-*   joblib 0.14.0
-
-##  Prepare all the files
-####    HAR-master(Feature-based models)
-This is the deep learning code for our feature-based models, including (ARC-I CDSSM ARC-II MV-LSTM MatchPyramid aNMM DUET HAR CONV-KNRM). Other feature-based models are placed in the directory ernie_model.
-
-Place the word embedding file glove.840B.300d.txt(which you could download from <https://nlp.stanford.edu/projects/glove/>) under the data/pinfo/ folder.
+To use our system, you should first configure the deep learning libaray, for this you can refer to the README.md in the “QA-deep-model”, make sure you have install the anaconda and the deep learning requirements. 
 
 
+Then configure the system rear end and front end as follows:
+The system rear end was a springboot project, just open and add related dependencies in IDEA, then you need to configure the following in the application.properties file:
+
+####    Database related configuration
+This project uses mysql database.
+
+Modify the following configuration to your database information:
+
+*   spring.datasource.url;a
+*   spring.datasource.username；
+*   spring.datasource.password
+
+####    Neo4j related configuration
+
+This project uses Neo4j to store our knowledge graph.
+
+Modify the following configuration to your Neo4j account information:
+
+* spring.data.neo4j.uri; 
+* spring.data.neo4j.username; 
+* spring.data.neo4j.password
+
+####    Other path configuration
+*   file.path.deep-model-project
+    >this is a foler path saved for QA-deep-model，change it to the folder and ends with '/'，such as：/home/QA-deep-model/ ;
+*   file.path.conda-path
+    >this is a parent folder path for your conda.sh (which is the conda shell for anaconda, find from your anaconda path) and ends with '/'，such as：/home/anaconda3/etc/profie.d/
 
 
-####    Cedr-master(Context-based models)
-Your should prepare two folders: bert_base and sci_bert_base. The files in bert_base such as vocab.txt, pytorch.bin, config.json are from <https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased.tar.gz>. The files in sci_bert_base such as vocab.txt, pytorch.bin, config.json are from are from  <https://s3-us-west-2.amazonaws.com/ai2-s2-research/scibert/huggingface_pytorch/scibert_scivocab_uncased.tar>.
-
-####    ernie_model(our joint model and knowledge-embedding model)
-To implement those models, you should prepare folders from <http://47.94.174.82:8080/HQADeepHelper/Instruction/system_require/>.
+The front end of the project is a project based on Vue.js and Element-ui component library. We also provide the source code and packaged front end code of the entire Vue project.
 
 
-*   Download kg_embed.zip and unzip the files to kg_embed. 
-*   Download knowledge_bert_base.zip and unzip the files to knowledge_bert_base.
-*   Download sci_knowledge_bert_base.zip and unzip the files to sci_knowledge_bert_base.
-*   Download umls_embed.zip and unzip the files to umls_embed.
-*   Download umls.zip and unzip the files to umls_embed/umls.
+If you don't need to know the front-end implementation, the packaged front-end code can be used directly without any additional configuration. The packaged code can be found in the /adds/src/resources/static.
 
 
-
-
-
-
+If you need to read the Vue project code, the code is located in the /adds-frontend directory in the project, and our project uses axios, d3.js, v-chats, vuex and other dependencies, you need these dependencies before running .
