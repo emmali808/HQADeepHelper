@@ -401,9 +401,9 @@ def main(argv):
     parser.add_argument('--model_file', default='./models/arci.config', help='Model_file: MatchZoo model file for the chosen model.')
     parser.add_argument('--parameter_config', default='./data/pinfo/config.py',
                         help='The user-defined parameters  config  file in our system')
-    parser.add_argument('--task_id', required=True,
+    parser.add_argument('--task_id', required=True, default='1',
                         help='the task id for this training task. help for insert into our database.')
-    parser.add_argument('--model_id', required=True,
+    parser.add_argument('--model_id', required=True, default='1',
                         help='the model id for this training task. help for insert into our database.')
     args = parser.parse_args()
     model_file =  args.model_file
