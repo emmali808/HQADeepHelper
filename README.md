@@ -24,13 +24,7 @@ This is the deep learning code for our feature-based models, including (ARC-I CD
 
 Place the word embedding file glove.840B.300d.txt(which you could download from <https://nlp.stanford.edu/projects/glove/>) under the data/pinfo/ folder.
 
-To run the feature-based models, first change your directory to HAR-master and edit the data/pinfo/config.py
->replace srcdir,dstdir,traindir,testdir,model_dstd_dir with your absolute path  to data/pinfo/hqa_sample/
->replace model_path with your absolute path  to matchzoo/models/
->replace weights_dir with your absolute path  to examples/pinfo/hqa_sample/
-```
-cd 
-```
+
 
 
 ####    Cedr-master(Context-based models)
